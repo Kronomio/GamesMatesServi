@@ -43,6 +43,31 @@
       .game-mode .page-title {
         display: none; /* ocultar título grande cuando se juega */
       }
+      /* Aviso para girar el dispositivo en móviles en vertical */
+      #rotate-hint {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 24px;
+        z-index: 1000;
+      }
+      #rotate-hint .box { max-width: 520px; margin: 0 auto; }
+      #rotate-hint h3 { margin: 0 0 10px; font-size: 22px; }
+      #rotate-hint p { margin: 0; font-size: 16px; opacity: 0.9; }
+      @media (max-width: 768px) and (orientation: portrait) {
+        .game-mode #rotate-hint { display: flex; }
+      }
+      /* En móviles, ocultar también el título inline cuando está en modo juego */
+      @media (max-width: 640px) {
+        .game-mode .header-inline-title {
+          display: none;
+        }
+      }
       h1 {
         margin-top: 20px;
         font-size: 28px;
@@ -153,6 +178,14 @@
 
     <h1 class="page-title">Jornada de Puertas Abiertas 2025<br />Instituto Serviliano Díaz</h1>
 
+    <!-- Aviso para rotar el dispositivo (solo móviles, vertical) -->
+    <div id="rotate-hint" aria-hidden="true">
+      <div class="box">
+        <h3>Girá el dispositivo</h3>
+        <p>El juego se ve mejor en horizontal (apaisado).</p>
+      </div>
+    </div>
+
     <div id="main-menu" class="container">
       <div class="menu-cards">
         <button class="card" style="background-image: url('quiz.png')" onclick="showSection('quiz')">
@@ -176,7 +209,7 @@
       <button class="button" onclick="openGame('https://wordwall.net/link3')">
         3° Año
       </button>
-      <button class="button" onclick="openGame('https://wordwall.net/link4')">
+      <button class="button" onclick="openGame('https://wordwall.net/play/96509/660/649')">
         4° Año
       </button>
       <button class="button" onclick="openGame('https://wordwall.net/link5')">
@@ -271,25 +304,58 @@
       }
 
       function openGame(url) {
+        // Navega al juego y solicita pantalla completa de inmediato (gesto de usuario)
         navigate(`game:${url}`);
+        try { enterFullscreen(); } catch (e) { /* ignorar errores de fullscreen */ }
       }
 
       function closeGame() {
         const frame = document.getElementById("game-frame");
         frame.src = "about:blank";
         navigate('menu');
+        // Salir de fullscreen si aplica y liberar orientación
+        try {
+          if (document.fullscreenElement && document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        } catch (e) {}
+        try {
+          if (screen.orientation && screen.orientation.unlock) {
+            screen.orientation.unlock();
+          }
+        } catch (e) {}
       }
 
-      function enterFullscreen() {
+      async function enterFullscreen() {
         const container = document.getElementById("game-frame");
-        if (container.requestFullscreen) {
-          container.requestFullscreen();
-        } else if (container.webkitRequestFullscreen) {
-          container.webkitRequestFullscreen();
-        } else if (container.msRequestFullscreen) {
-          container.msRequestFullscreen();
+        try {
+          if (container.requestFullscreen) {
+            await container.requestFullscreen();
+          } else if (container.webkitRequestFullscreen) {
+            container.webkitRequestFullscreen();
+          } else if (container.msRequestFullscreen) {
+            container.msRequestFullscreen();
+          }
+        } catch (e) {}
+
+        // Intentar orientación horizontal (solo navegadores compatibles y en fullscreen)
+        if (screen.orientation && screen.orientation.lock) {
+          try { await screen.orientation.lock('landscape'); } catch (e) {}
         }
       }
+
+      // Reintentar el lock de orientación al entrar/salir de fullscreen
+      document.addEventListener('fullscreenchange', async () => {
+        if (document.fullscreenElement) {
+          if (screen.orientation && screen.orientation.lock) {
+            try { await screen.orientation.lock('landscape'); } catch (e) {}
+          }
+        } else {
+          if (screen.orientation && screen.orientation.unlock) {
+            try { screen.orientation.unlock(); } catch (e) {}
+          }
+        }
+      });
 
       // Detectar cuando el usuario usa el botón atrás/adelante del navegador
       window.addEventListener('popstate', function(event) {
