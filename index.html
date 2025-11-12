@@ -43,25 +43,6 @@
       .game-mode .page-title {
         display: none; /* ocultar título grande cuando se juega */
       }
-      /* Aviso para girar el dispositivo en móviles en vertical */
-      #rotate-hint {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.6);
-        color: #fff;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 24px;
-        z-index: 1000;
-      }
-      #rotate-hint .box { max-width: 520px; margin: 0 auto; }
-      #rotate-hint h3 { margin: 0 0 10px; font-size: 22px; }
-      #rotate-hint p { margin: 0; font-size: 16px; opacity: 0.9; }
-      @media (max-width: 768px) and (orientation: portrait) {
-        .game-mode #rotate-hint { display: flex; }
-      }
       /* En móviles, ocultar también el título inline cuando está en modo juego */
       @media (max-width: 640px) {
         .game-mode .header-inline-title {
@@ -94,7 +75,7 @@
         height: 240px;
         cursor: pointer;
         overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         background-color: #e8f1f0; /* fallback */
         background-size: cover;
         background-position: center;
@@ -104,12 +85,17 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 50%, rgba(0,0,0,0) 80%);
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.55),
+          rgba(0, 0, 0, 0.15) 50%,
+          rgba(0, 0, 0, 0) 80%
+        );
         pointer-events: none;
       }
       .card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 26px rgba(0,0,0,0.16);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
       }
       .card .card-label {
         position: absolute;
@@ -119,7 +105,7 @@
         color: #fff;
         font-size: 22px;
         font-weight: 600;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
       }
       /* Contenedor del juego embebido */
       #game-container {
@@ -172,26 +158,30 @@
     <header>
       <!-- Subí tu logo a la carpeta y reemplazá el nombre aquí -->
       <img src="logo.jpg" alt="Logo Instituto Serviliano Díaz" />
-      <div class="header-inline-title">Jornada de Puertas Abiertas 2025 — Instituto Serviliano Díaz</div>
+      <div class="header-inline-title">
+        Jornada de Puertas Abiertas 2025 — Instituto Serviliano Díaz
+      </div>
       <img src="logo 2.png" alt="Logo 2" />
     </header>
 
-    <h1 class="page-title">Jornada de Puertas Abiertas 2025<br />Instituto Serviliano Díaz</h1>
-
-    <!-- Aviso para rotar el dispositivo (solo móviles, vertical) -->
-    <div id="rotate-hint" aria-hidden="true">
-      <div class="box">
-        <h3>Girá el dispositivo</h3>
-        <p>El juego se ve mejor en horizontal (apaisado).</p>
-      </div>
-    </div>
+    <h1 class="page-title">
+      Jornada de Puertas Abiertas 2025<br />Instituto Serviliano Díaz
+    </h1>
 
     <div id="main-menu" class="container">
       <div class="menu-cards">
-        <button class="card" style="background-image: url('quiz.png')" onclick="showSection('quiz')">
+        <button
+          class="card"
+          style="background-image: url('quiz.png')"
+          onclick="showSection('quiz')"
+        >
           <div class="card-label">Preguntas y Respuestas (Quizz)</div>
         </button>
-        <button class="card" style="background-image: url('topos.png')" onclick="showSection('topos')">
+        <button
+          class="card"
+          style="background-image: url('topos.png')"
+          onclick="showSection('topos')"
+        >
           <div class="card-label">Aplasta Topos</div>
         </button>
       </div>
@@ -200,24 +190,22 @@
     <!-- Sección Quiz -->
     <div class="container hidden" id="quiz">
       <h2>Seleccioná tu año</h2>
-      <button class="button" onclick="openGame('https://wordwall.net/link1')">
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/96488/111/849')"
+      >
         1° Año
       </button>
-      <button class="button" onclick="openGame('https://wordwall.net/link2')">
-        2° Año
-      </button>
-      <button class="button" onclick="openGame('https://wordwall.net/link3')">
-        3° Año
-      </button>
-      <button class="button" onclick="openGame('https://wordwall.net/play/96509/660/649')">
+      <!-- <button class="button" onclick="openGame('')">2° Año</button>
+      <button class="button" onclick="openGame('')">3° Año</button> -->
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/96509/660/649')"
+      >
         4° Año
       </button>
-      <button class="button" onclick="openGame('https://wordwall.net/link5')">
-        5° Año
-      </button>
-      <button class="button" onclick="openGame('https://wordwall.net/link6')">
-        6° Año
-      </button>
+      <!-- <button class="button" onclick="openGame('')">5° Año</button>
+      <button class="button" onclick="openGame('')">6° Año</button> -->
       <button class="button" onclick="goBack()">← Volver</button>
     </div>
 
@@ -260,14 +248,15 @@
     </div>
 
     <footer>
-      © 2025 - Instituto Serviliano Díaz | Jornada de Puertas Abiertas | Matemática Divertida
+      © 2025 - Instituto Serviliano Díaz | Jornada de Puertas Abiertas |
+      Matemática Divertida
     </footer>
 
     <script>
       // Gestión del historial del navegador
       function navigate(view) {
         const state = { view: view };
-        history.pushState(state, '', `#${view}`);
+        history.pushState(state, "", `#${view}`);
         showView(view);
       }
 
@@ -280,13 +269,13 @@
         document.body.classList.remove("game-mode");
 
         // Mostrar la vista solicitada
-        if (view === 'menu' || view === '') {
+        if (view === "menu" || view === "") {
           document.getElementById("main-menu").classList.remove("hidden");
-        } else if (view === 'quiz') {
+        } else if (view === "quiz") {
           document.getElementById("quiz").classList.remove("hidden");
-        } else if (view === 'topos') {
+        } else if (view === "topos") {
           document.getElementById("topos").classList.remove("hidden");
-        } else if (view.startsWith('game:')) {
+        } else if (view.startsWith("game:")) {
           const url = view.substring(5);
           const frame = document.getElementById("game-frame");
           frame.src = url;
@@ -306,74 +295,47 @@
       function openGame(url) {
         // Navega al juego y solicita pantalla completa de inmediato (gesto de usuario)
         navigate(`game:${url}`);
-        try { enterFullscreen(); } catch (e) { /* ignorar errores de fullscreen */ }
+        try {
+          enterFullscreen();
+        } catch (e) {
+          /* ignorar errores de fullscreen */
+        }
       }
 
       function closeGame() {
         const frame = document.getElementById("game-frame");
         frame.src = "about:blank";
-        navigate('menu');
-        // Salir de fullscreen si aplica y liberar orientación
-        try {
-          if (document.fullscreenElement && document.exitFullscreen) {
-            document.exitFullscreen();
-          }
-        } catch (e) {}
-        try {
-          if (screen.orientation && screen.orientation.unlock) {
-            screen.orientation.unlock();
-          }
-        } catch (e) {}
+        navigate("menu");
       }
 
-      async function enterFullscreen() {
+      function enterFullscreen() {
         const container = document.getElementById("game-frame");
-        try {
-          if (container.requestFullscreen) {
-            await container.requestFullscreen();
-          } else if (container.webkitRequestFullscreen) {
-            container.webkitRequestFullscreen();
-          } else if (container.msRequestFullscreen) {
-            container.msRequestFullscreen();
-          }
-        } catch (e) {}
-
-        // Intentar orientación horizontal (solo navegadores compatibles y en fullscreen)
-        if (screen.orientation && screen.orientation.lock) {
-          try { await screen.orientation.lock('landscape'); } catch (e) {}
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        } else if (container.msRequestFullscreen) {
+          container.msRequestFullscreen();
         }
       }
-
-      // Reintentar el lock de orientación al entrar/salir de fullscreen
-      document.addEventListener('fullscreenchange', async () => {
-        if (document.fullscreenElement) {
-          if (screen.orientation && screen.orientation.lock) {
-            try { await screen.orientation.lock('landscape'); } catch (e) {}
-          }
-        } else {
-          if (screen.orientation && screen.orientation.unlock) {
-            try { screen.orientation.unlock(); } catch (e) {}
-          }
-        }
-      });
 
       // Detectar cuando el usuario usa el botón atrás/adelante del navegador
-      window.addEventListener('popstate', function(event) {
+      window.addEventListener("popstate", function (event) {
         if (event.state && event.state.view) {
           showView(event.state.view);
         } else {
-          showView('menu');
+          showView("menu");
         }
       });
 
       // Inicializar la vista según el hash o estado inicial
-      window.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener("DOMContentLoaded", function () {
         const hash = window.location.hash.substring(1);
         if (hash) {
           showView(hash);
-          history.replaceState({ view: hash }, '', window.location.href);
+          history.replaceState({ view: hash }, "", window.location.href);
         } else {
-          history.replaceState({ view: 'menu' }, '', '#menu');
+          history.replaceState({ view: "menu" }, "", "#menu");
         }
       });
     </script>
