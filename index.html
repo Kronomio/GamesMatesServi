@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jornada de Puertas Abiertas 2025 - Instituto Serviliano Díaz</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #ffffff;
+        color: #003366;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: transparent;
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 16px;
+      }
+      header img {
+        height: 110px; /* tamaño normal */
+      }
+      /* Título inline solo visible en modo juego */
+      .header-inline-title {
+        display: none;
+        margin: 0 12px;
+        font-size: 20px;
+        color: #003366;
+        text-align: center;
+        line-height: 1.2;
+        flex: 1;
+      }
+      .game-mode header img {
+        height: 70px; /* logos más pequeños en juego */
+      }
+      .game-mode .header-inline-title {
+        display: block;
+      }
+      .game-mode .page-title {
+        display: none; /* ocultar título grande cuando se juega */
+      }
+      h1 {
+        margin-top: 20px;
+        font-size: 28px;
+        color: #003366;
+      }
+      .container {
+        margin-top: 40px;
+      }
+      /* Tarjetas del menú principal */
+      .menu-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        align-items: stretch;
+        padding: 0 16px;
+        max-width: 1100px;
+        margin: 30px auto 0;
+      }
+      .card {
+        position: relative;
+        border: none;
+        padding: 0;
+        border-radius: 16px;
+        height: 240px;
+        cursor: pointer;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        background-color: #e8f1f0; /* fallback */
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 50%, rgba(0,0,0,0) 80%);
+        pointer-events: none;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(0,0,0,0.16);
+      }
+      .card .card-label {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 600;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      }
+      /* Contenedor del juego embebido */
+      #game-container {
+        margin: 30px auto 0;
+        max-width: 1100px;
+        padding: 0 16px;
+      }
+      #game-frame {
+        width: 100%;
+        height: 70vh;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        background: #fff;
+      }
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+      .button {
+        display: block;
+        margin: 15px auto;
+        padding: 15px 30px;
+        font-size: 18px;
+        color: white;
+        background-color: #007b8f;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: 250px;
+      }
+      .button:hover {
+        background-color: #005f6b;
+      }
+      .hidden {
+        display: none;
+      }
+      footer {
+        margin-top: 50px;
+        padding: 15px;
+        font-size: 14px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Subí tu logo a la carpeta y reemplazá el nombre aquí -->
+      <img src="logo.jpg" alt="Logo Instituto Serviliano Díaz" />
+      <div class="header-inline-title">Jornada de Puertas Abiertas 2025 — Instituto Serviliano Díaz</div>
+      <img src="logo 2.png" alt="Logo 2" />
+    </header>
+
+    <h1 class="page-title">Jornada de Puertas Abiertas 2025<br />Instituto Serviliano Díaz</h1>
+
+    <div id="main-menu" class="container">
+      <div class="menu-cards">
+        <button class="card" style="background-image: url('quiz.png')" onclick="showSection('quiz')">
+          <div class="card-label">Preguntas y Respuestas (Quizz)</div>
+        </button>
+        <button class="card" style="background-image: url('topos.png')" onclick="showSection('topos')">
+          <div class="card-label">Aplasta Topos</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sección Quiz -->
+    <div class="container hidden" id="quiz">
+      <h2>Seleccioná tu año</h2>
+      <button class="button" onclick="openGame('https://wordwall.net/link1')">
+        1° Año
+      </button>
+      <button class="button" onclick="openGame('https://wordwall.net/link2')">
+        2° Año
+      </button>
+      <button class="button" onclick="openGame('https://wordwall.net/link3')">
+        3° Año
+      </button>
+      <button class="button" onclick="openGame('https://wordwall.net/link4')">
+        4° Año
+      </button>
+      <button class="button" onclick="openGame('https://wordwall.net/link5')">
+        5° Año
+      </button>
+      <button class="button" onclick="openGame('https://wordwall.net/link6')">
+        6° Año
+      </button>
+      <button class="button" onclick="goBack()">← Volver</button>
+    </div>
+
+    <!-- Sección Aplasta Topos -->
+    <div class="container hidden" id="topos">
+      <h2>Seleccioná el nivel</h2>
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/101911/981/984')"
+      >
+        Nivel Básico
+      </button>
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/96510/695/524 ')"
+      >
+        Nivel Intermedio / Avanzado
+      </button>
+      <button class="button" onclick="goBack()">← Volver</button>
+    </div>
+
+    <!-- Contenedor del juego embebido -->
+    <div class="hidden" id="game-container">
+      <iframe
+        id="game-frame"
+        src="about:blank"
+        title="Juego"
+        allowfullscreen
+        referrerpolicy="no-referrer"
+      ></iframe>
+      <div class="controls">
+        <button class="button" onclick="enterFullscreen()">
+          Pantalla completa
+        </button>
+        <button class="button" onclick="closeGame()">← Volver al menú</button>
+      </div>
+      <p style="font-size: 12px; color: #666; margin-top: 8px">
+        Tip: salí de pantalla completa con la tecla Esc.
+      </p>
+    </div>
+
+    <footer>
+      © 2025 - Instituto Serviliano Díaz | Jornada de Puertas Abiertas | Matemática Divertida
+    </footer>
+
+    <script>
+      // Gestión del historial del navegador
+      function navigate(view) {
+        const state = { view: view };
+        history.pushState(state, '', `#${view}`);
+        showView(view);
+      }
+
+      function showView(view) {
+        // Ocultar todas las vistas
+        document.getElementById("main-menu").classList.add("hidden");
+        document.getElementById("quiz").classList.add("hidden");
+        document.getElementById("topos").classList.add("hidden");
+        document.getElementById("game-container").classList.add("hidden");
+        document.body.classList.remove("game-mode");
+
+        // Mostrar la vista solicitada
+        if (view === 'menu' || view === '') {
+          document.getElementById("main-menu").classList.remove("hidden");
+        } else if (view === 'quiz') {
+          document.getElementById("quiz").classList.remove("hidden");
+        } else if (view === 'topos') {
+          document.getElementById("topos").classList.remove("hidden");
+        } else if (view.startsWith('game:')) {
+          const url = view.substring(5);
+          const frame = document.getElementById("game-frame");
+          frame.src = url;
+          document.getElementById("game-container").classList.remove("hidden");
+          document.body.classList.add("game-mode");
+        }
+      }
+
+      function showSection(sectionId) {
+        navigate(sectionId);
+      }
+
+      function goBack() {
+        history.back();
+      }
+
+      function openGame(url) {
+        navigate(`game:${url}`);
+      }
+
+      function closeGame() {
+        const frame = document.getElementById("game-frame");
+        frame.src = "about:blank";
+        navigate('menu');
+      }
+
+      function enterFullscreen() {
+        const container = document.getElementById("game-frame");
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        } else if (container.msRequestFullscreen) {
+          container.msRequestFullscreen();
+        }
+      }
+
+      // Detectar cuando el usuario usa el botón atrás/adelante del navegador
+      window.addEventListener('popstate', function(event) {
+        if (event.state && event.state.view) {
+          showView(event.state.view);
+        } else {
+          showView('menu');
+        }
+      });
+
+      // Inicializar la vista según el hash o estado inicial
+      window.addEventListener('DOMContentLoaded', function() {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+          showView(hash);
+          history.replaceState({ view: hash }, '', window.location.href);
+        } else {
+          history.replaceState({ view: 'menu' }, '', '#menu');
+        }
+      });
+    </script>
+  </body>
+</html>
