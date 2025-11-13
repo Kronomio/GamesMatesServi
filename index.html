@@ -58,6 +58,31 @@
       .container {
         margin-top: 40px;
       }
+      /* Cartelera informativa del menú principal */
+      .info-banner {
+        background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+        border-radius: 20px;
+        padding: 30px 24px;
+        margin: 0 auto 40px;
+        max-width: 1100px;
+        box-shadow: 0 12px 30px rgba(0, 51, 102, 0.2);
+        color: white;
+      }
+      .info-banner h2 {
+        margin: 0 0 20px 0;
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+      }
+      .info-banner p {
+        margin: 12px 0;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .info-banner strong {
+        font-weight: 700;
+        text-decoration: underline;
+      }
       /* Tarjetas del menú principal */
       .menu-cards {
         display: grid;
@@ -170,6 +195,16 @@
       @media (max-width: 640px) {
         .container { margin-top: 20px; }
         #main-menu { padding: 0 8px 12px; }
+        .info-banner {
+          padding: 24px 16px;
+          margin-bottom: 30px;
+        }
+        .info-banner h2 {
+          font-size: 22px;
+        }
+        .info-banner p {
+          font-size: 15px;
+        }
         .menu-cards {
           grid-template-columns: 1fr;
           gap: 20px;
@@ -200,17 +235,19 @@
     </h1>
 
     <div id="main-menu" class="container">
+      <div class="info-banner">
+        <h2>🏆 ¡Bienvenidos a los Juegos Matemáticos del Servi! 🏆</h2>
+        <p>
+          🎮 <strong>¡Competí sanamente con tus compañeros!</strong> Podés jugar todas las veces que quieras a cada juego.
+        </p>
+        <p>
+          🎯 <strong>¡No te olvides de jugar a TODOS!</strong> Al finalizar la jornada del servi, veremos quiénes son los ganadores de cada juego.
+        </p>
+        <p>
+          ✍️ <strong>Importante:</strong> Cuando te pida tu nombre, escribí <strong>Nombre y Curso</strong> (ejemplo: Juan 5°A)
+        </p>
+      </div>
       <div class="menu-cards">
-        <div class="card-wrapper">
-          <button
-            class="card"
-            style="background-image: url('quiz.png')"
-            onclick="showSection('quiz')"
-          >
-            <div class="card-label">Preguntas y Respuestas (Quizz)</div>
-          </button>
-          <div class="card-description">💡 ¡Demostrá lo que sabés! ¿Podés superar a tus compañeros y responder todo a la velocidad de la luz?</div>
-        </div>
         <div class="card-wrapper">
           <button
             class="card"
@@ -240,6 +277,16 @@
             <div class="card-label">Ahorcado Matemático</div>
           </button>
           <div class="card-description">🎯 ¡Adiviná las palabras secretas! Descubrí los términos matemáticos letra por letra.</div>
+        </div>
+        <div class="card-wrapper">
+          <button
+            class="card"
+            style="background-image: url('quiz.png')"
+            onclick="showSection('quiz')"
+          >
+            <div class="card-label">Preguntas y Respuestas (Quizz)</div>
+          </button>
+          <div class="card-description">💡 ¡Demostrá lo que sabés! ¿Podés superar a tus compañeros y responder todo a la velocidad de la luz?</div>
         </div>
         <div class="card-wrapper">
           <button
