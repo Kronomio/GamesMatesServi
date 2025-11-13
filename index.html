@@ -61,12 +61,17 @@
       /* Tarjetas del menú principal */
       .menu-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 20px;
-        align-items: stretch;
+        grid-template-columns: repeat(2, 1fr); /* dos por fila */
+        gap: 24px;
+        align-items: start;
         padding: 0 16px;
         max-width: 1100px;
         margin: 30px auto 0;
+      }
+      .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
       .card {
         position: relative;
@@ -81,6 +86,7 @@
         background-size: cover;
         background-position: center;
         transition: transform 0.25s ease, box-shadow 0.25s ease;
+        width: 100%;
       }
       .card::after {
         content: "";
@@ -107,6 +113,13 @@
         font-size: 22px;
         font-weight: 600;
         text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+      }
+      .card-description {
+        color: #003366;
+        font-size: 14px;
+        line-height: 1.4;
+        text-align: center;
+        padding: 0 8px;
       }
       /* Contenedor del juego embebido */
       #game-container {
@@ -159,7 +172,7 @@
         #main-menu { padding: 0 8px 12px; }
         .menu-cards {
           grid-template-columns: 1fr;
-          gap: 14px;
+          gap: 20px;
           margin: 10px auto 0;
           max-width: 540px;
         }
@@ -168,6 +181,7 @@
           border-radius: 14px;
         }
         .card .card-label { font-size: 20px; }
+        .card-description { font-size: 13px; }
       }
     </style>
   </head>
@@ -187,20 +201,56 @@
 
     <div id="main-menu" class="container">
       <div class="menu-cards">
-        <button
-          class="card"
-          style="background-image: url('quiz.png')"
-          onclick="showSection('quiz')"
-        >
-          <div class="card-label">Preguntas y Respuestas (Quizz)</div>
-        </button>
-        <button
-          class="card"
-          style="background-image: url('topos.png')"
-          onclick="showSection('topos')"
-        >
-          <div class="card-label">Aplasta Topos</div>
-        </button>
+        <div class="card-wrapper">
+          <button
+            class="card"
+            style="background-image: url('quiz.png')"
+            onclick="showSection('quiz')"
+          >
+            <div class="card-label">Preguntas y Respuestas (Quizz)</div>
+          </button>
+          <div class="card-description">💡 ¡Demostrá lo que sabés! ¿Podés superar a tus compañeros y responder todo a la velocidad de la luz?</div>
+        </div>
+        <div class="card-wrapper">
+          <button
+            class="card"
+            style="background-image: url('topos.png')"
+            onclick="showSection('topos')"
+          >
+            <div class="card-label">Aplasta Topos</div>
+          </button>
+          <div class="card-description">⚡ ¡Reflejos y cálculo mental! Resolvé las multiplicaciones y aplastá los topos correctos. ¿Qué tan rápido sos?</div>
+        </div>
+        <div class="card-wrapper">
+          <button
+            class="card"
+            style="background-image: url('sopa.png')"
+            onclick="showSection('sopa')"
+          >
+            <div class="card-label">Sopa de Letras Matemático</div>
+          </button>
+          <div class="card-description">🔍 ¡Desafío reloj! ¿Cuántos términos matemáticos podés encontrar antes de que se acabe el tiempo?</div>
+        </div>
+        <div class="card-wrapper">
+          <button
+            class="card"
+            style="background-image: url('ahorcado.png')"
+            onclick="openGame('https://wordwall.net/play/101938/985/127')"
+          >
+            <div class="card-label">Ahorcado Matemático</div>
+          </button>
+          <div class="card-description">🎯 ¡Adiviná las palabras secretas! Descubrí los términos matemáticos letra por letra.</div>
+        </div>
+        <div class="card-wrapper">
+          <button
+            class="card"
+            style="background-image: url('anagrama.png')"
+            onclick="showSection('anagrama')"
+          >
+            <div class="card-label">Anagramas Matemáticos</div>
+          </button>
+          <div class="card-description">🔤 ¡Desenredá las letras! Ordená las letras y formá términos matemáticos. ¿Te animás?</div>
+        </div>
       </div>
     </div>
 
@@ -213,16 +263,16 @@
       >
         1° Año
       </button>
-      <!-- <button class="button" onclick="openGame('')">2° Año</button>
-      <button class="button" onclick="openGame('')">3° Año</button> -->
+      <button class="button" onclick="openGame('https://wordwall.net/play/96510/063/693')">2° Año</button>
+      <button class="button" onclick="openGame('https://wordwall.net/play/96510/119/545')">3° Año</button>
       <button
         class="button"
         onclick="openGame('https://wordwall.net/play/96509/660/649')"
       >
         4° Año
       </button>
-      <!-- <button class="button" onclick="openGame('')">5° Año</button>
-      <button class="button" onclick="openGame('')">6° Año</button> -->
+      <button class="button" onclick="openGame('https://wordwall.net/play/96314/205/564')">5° Año</button>
+      <button class="button" onclick="openGame('https://wordwall.net/play/96506/715/292')">6° Año</button> 
       <button class="button" onclick="goBack()">← Volver</button>
     </div>
 
@@ -240,6 +290,42 @@
         onclick="openGame('https://wordwall.net/play/96510/695/524 ')"
       >
         Nivel Intermedio / Avanzado
+      </button>
+      <button class="button" onclick="goBack()">← Volver</button>
+    </div>
+
+    <!-- Sección Sopa de Letras -->
+    <div class="container hidden" id="sopa">
+      <h2>Seleccioná la dificultad</h2>
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/101939/293/906')"
+      >
+        Fácil
+      </button>
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/101938/304/135')"
+      >
+        Medio
+      </button>
+      <button class="button" onclick="goBack()">← Volver</button>
+    </div>
+
+    <!-- Sección Anagramas -->
+    <div class="container hidden" id="anagrama">
+      <h2>Seleccioná la dificultad</h2>
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/101939/997/607')"
+      >
+        Básico
+      </button>
+      <button
+        class="button"
+        onclick="openGame('https://wordwall.net/play/101939/767/857')"
+      >
+        Medio
       </button>
       <button class="button" onclick="goBack()">← Volver</button>
     </div>
@@ -282,6 +368,8 @@
         document.getElementById("main-menu").classList.add("hidden");
         document.getElementById("quiz").classList.add("hidden");
         document.getElementById("topos").classList.add("hidden");
+        document.getElementById("sopa").classList.add("hidden");
+        document.getElementById("anagrama").classList.add("hidden");
         document.getElementById("game-container").classList.add("hidden");
         document.body.classList.remove("game-mode");
 
@@ -292,6 +380,10 @@
           document.getElementById("quiz").classList.remove("hidden");
         } else if (view === "topos") {
           document.getElementById("topos").classList.remove("hidden");
+        } else if (view === "sopa") {
+          document.getElementById("sopa").classList.remove("hidden");
+        } else if (view === "anagrama") {
+          document.getElementById("anagrama").classList.remove("hidden");
         } else if (view.startsWith("game:")) {
           const url = view.substring(5);
           const frame = document.getElementById("game-frame");
